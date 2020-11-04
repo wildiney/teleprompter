@@ -52,7 +52,7 @@ function Menu ({ menu, saveTextHandler, showHandler, texts, deleteHandler }) {
             }
           )
         }
-        {!texts && 'Não há textos salvos'}
+        {!texts && 'There are no texts'}
       </div>
     </aside >
   )
