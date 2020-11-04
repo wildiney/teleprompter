@@ -1,0 +1,29 @@
+.item {
+  margin: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item label {
+  margin-right: 7px;
+  font-size: 1.2rem;
+}
+
+.item input,
+.item button {
+  height: 2rem;
+  min-width: 2rem;
+  background-color: lightgray;
+}
+
+.item svg {
+  height: 1.6rem;
+  width: 1.6rem;
+}
+
+.item button svg {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
