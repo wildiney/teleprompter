@@ -2,7 +2,16 @@
   background-color: gray;
   margin: 10px 0;
   padding: 0.9rem;
-  border-radius: 0.4rem;
+  border-radius: 0.2rem;
+  white-space: pre-wrap;
+  position: relative;
+}
+
+.textBlock .content {
+  max-height: 100px;
+  overflow-y: scroll;
+  border-bottom: 1px solid white;
+  padding-bottom: 0.3rem;
 }
 
 .textBlock h3 {

@@ -77,6 +77,10 @@ aside .wrapper {
   background-color: rgb(65, 102, 0);
   cursor: pointer;
 }
+.formAdd .btn_salvar:disabled {
+  background-color: gray;
+  color: darkgray;
+}
 
 aside.showMenu {
   width: 100vw;

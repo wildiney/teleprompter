@@ -29,7 +29,7 @@ function Menu ({ menu, saveTextHandler, showHandler, texts, deleteHandler }) {
             </textarea>
           </div>
           <div className="form-group">
-            <button type="button" className="btn_salvar" onClick={() => { saveText() }}>Save</button>
+            <button type="button" className="btn_salvar" disabled={contentText !== '' ? '' : 'disabled'} onClick={() => { saveText() }}>Save</button>
           </div>
         </div>
       </div>
@@ -53,6 +53,7 @@ function Menu ({ menu, saveTextHandler, showHandler, texts, deleteHandler }) {
           )
         }
         {!texts && 'There are no texts'}
+        {texts && texts.length < 1 && 'Text list is empty'}
       </div>
     </aside >
   )
