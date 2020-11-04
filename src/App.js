@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BsFillStopwatchFill, BsStopFill, BsPlayFill, BsPauseFill, BsFonts } from 'react-icons/bs'
+import { BsFillStopwatchFill, BsStopFill, BsPlayFill, BsPauseFill, BsFonts, BsViewList, BsViewStacked } from 'react-icons/bs'
 
 import Teleprompter from './components/Teleprompter/Teleprompter'
 import Menu from './components/Menu/Menu'
@@ -21,6 +21,7 @@ function App () {
   const [start, setStart] = useState(false)
   const [pause, setPause] = useState(false)
   const [menu, setMenu] = useState(false)
+  const [ease, setEase] = useState(true)
 
   const showHandler = (index) => {
     setTextPrompter({ id: index, title: texts[index].title, text: texts[index].text })
@@ -59,11 +60,14 @@ function App () {
 
   useEffect(() => {
     setTexts(getItems())
-
     let interval
     if (start) {
       interval = setInterval(() => {
-        setPosition(prevPosition => prevPosition - (fontSize * 1.5))
+        if (ease) {
+          setPosition(prevPosition => prevPosition - (fontSize * 1.5))
+        } else {
+          setPosition(prevPosition => prevPosition - 10)
+        }
       }, speed)
     }
     if (pause) {
@@ -71,7 +75,7 @@ function App () {
     }
 
     return () => { clearInterval(interval) }
-  }, [position, start, fontSize, speed, pause])
+  }, [position, start, fontSize, speed, pause, ease])
 
   return (
     <>
@@ -83,6 +87,7 @@ function App () {
           position={position}
           title={textPrompter.title}
           text={textPrompter.text}
+          ease={ease}
         />
 
         <Menu
@@ -105,9 +110,23 @@ function App () {
         <Options label={<BsFillStopwatchFill />}>
           <input
             type="number"
-            step='100'
+            step='10'
             value={speed}
             onChange={(e) => { setSpeed(e.target.value) }}
+          />
+        </Options>
+        <Options label={ease ? <BsViewList /> : <BsViewStacked />}>
+          <input
+            type="checkbox"
+            value={ease}
+            onChange={() => {
+              setEase(!ease)
+              if (!ease) {
+                setSpeed(1000)
+              } else {
+                setSpeed(100)
+              }
+            }}
           />
         </Options>
         <Options>
